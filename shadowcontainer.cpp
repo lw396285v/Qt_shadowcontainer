@@ -4,7 +4,7 @@
 #include <QtMath>
 
 
-ShadowContainer::ShadowContainer(int m,int r,QWidget*p):margin(m),radius(r),QFrame(p)
+ShadowContainer::ShadowContainer(QWidget*p):QFrame(p)
 {
     setAttribute(Qt::WA_StyledBackground, true);
 }
@@ -31,4 +31,9 @@ void ShadowContainer::paintEvent(QPaintEvent *e){
         painter.setPen(color);
         painter.drawPath(path);
     }
+}
+
+void ShadowContainer::setParam(int m,int r){
+    margin = m;
+    radius = r;
 }
