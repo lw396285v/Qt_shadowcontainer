@@ -2,7 +2,7 @@
 #include <QPainter>
 #include <QPainterPath>
 #include <QtMath>
-
+#include <QGridLayout>
 
 ShadowContainer::ShadowContainer(QWidget*p):QFrame(p)
 {
@@ -33,7 +33,15 @@ void ShadowContainer::paintEvent(QPaintEvent *e){
     }
 }
 
+void ShadowContainer::addWidget(QWidget* addin){
+    this->setFixedSize(addin->size());
+    _l->addWidget(addin);
+}
+
 void ShadowContainer::setParam(int m,int r){
     margin = m;
     radius = r;
+    _l = new QGridLayout(this);
+    _l->setMargin(margin);
+    this->setLayout(l);
 }
