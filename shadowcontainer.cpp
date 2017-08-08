@@ -1,4 +1,8 @@
 #include "shadowcontainer.h"
+#include <QPainter>
+#include <QPainterPath>
+#include <QtMath>
+
 
 ShadowContainer::ShadowContainer(int m,int r,QWidget*p):margin(m),radius(r),QFrame(p)
 {
@@ -20,7 +24,7 @@ void ShadowContainer::paintEvent(QPaintEvent *e){
         path.arcTo(margin-i,this->height()-margin-2*radius-i,2*(i+radius),2*(i+radius),180,90);
         path.lineTo(this->width()-margin-radius,this->height()-margin+i);
         path.arcTo(this->width()-margin-2*radius-i,this->height()-margin-2*radius-i,2*(i+radius),2*(i+radius),270,90);
-        path.lineTo(this->width()-10+i,30);
+        path.lineTo(this->width()-margin+i,margin+radius);
         path.arcTo(this->width()-margin-2*radius-i,margin-i,2*(i+radius),2*(i+radius),0,90);
         path.closeSubpath();
         color.setAlpha(150 - qSqrt(i)*50);
